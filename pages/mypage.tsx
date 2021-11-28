@@ -3,21 +3,21 @@ import { ReactElement } from 'react';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-const Home = (): ReactElement => {
+const MyPage = (): ReactElement => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Home</title>
+        <title>My Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Home
+          My Page
         </h1>
       </main>
     </div>
   )
 }
 
-export default Home;
+export default MyPage;
