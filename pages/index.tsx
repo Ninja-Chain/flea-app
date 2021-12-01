@@ -1,18 +1,17 @@
 import { ReactElement } from 'react';
 
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 const Home = (): ReactElement => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main>
+        <h1>
           Home
         </h1>
       </main>
