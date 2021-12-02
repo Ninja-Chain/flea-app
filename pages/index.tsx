@@ -1,11 +1,9 @@
 import styles from '../styles/Home.module.css'
 import WalletLoader from '../components/WalletLoader'
 import { useSigningClient } from '../contexts/cosmwasm'
-import { useEffect, useState, MouseEvent, ChangeEvent } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import {
-  convertMicroDenomToDenom,
-  convertDenomToMicroDenom,
-  convertFromMicroDenom
+  convertMicroDenomToDenom,  convertFromMicroDenom
 } from '../util/conversion'
 import { useAlert } from 'react-alert'
 import Emoji from '../components/Emoji'
@@ -13,7 +11,7 @@ import Emoji from '../components/Emoji'
 const PUBLIC_STAKING_DENOM = process.env.NEXT_PUBLIC_STAKING_DENOM || 'uconst'
 const PUBLIC_CW721_CONTRACT = process.env.NEXT_PUBLIC_CW721_CONTRACT || ''
 
-export default function Home() {
+const Home = (): ReactElement => {
   const { walletAddress, signingClient, connectWallet } = useSigningClient()
   const [balance, setBalance] = useState('')
   const [walletAmount, setWalletAmount] = useState(0)
@@ -70,3 +68,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;

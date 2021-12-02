@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import { SigningCosmWasmProvider } from '../contexts/cosmwasm'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from '../components/AlertTemplate'
+import 'tailwindcss/tailwind.css'
 
 const options = {
   position: positions.BOTTOM_CENTER,
