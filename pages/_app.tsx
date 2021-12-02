@@ -1,5 +1,4 @@
 import { AppProps } from 'next/app'
-import '../styles/globals.css'
 import Layout from '../components/Layout'
 import { SigningCosmWasmProvider } from '../contexts/cosmwasm'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'

@@ -1,4 +1,3 @@
-import styles from '../styles/Home.module.css'
 import WalletLoader from '../components/WalletLoader'
 import { useSigningClient } from '../contexts/cosmwasm'
 import { ReactElement, useEffect, useState } from 'react'
@@ -47,25 +46,21 @@ const Home = (): ReactElement => {
   }, [signingClient, alert])
 
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <WalletLoader loading={loading}>
-          {balance && (
-            <p className="text-primary">
-              <span>{`Your wallet has ${balance} `}</span>
-              <Emoji label="dog2" symbol="🐕" />
-            </p>
-          )}
+    <WalletLoader loading={loading}>
+      {balance && (
+        <p className="text-primary">
+          <span>{`Your wallet has ${balance} `}</span>
+          <Emoji label="dog2" symbol="🐕" />
+        </p>
+      )}
 
-          {NftUri && (
-            <p className="text-primary">
-              <span>{`TokenId No.1 NFT URI is ${NftUri} `}</span>
-              <Emoji label="cat" symbol="😻" />
-            </p>
-          )}
-        </WalletLoader>
-      </main>
-    </div>
+      {NftUri && (
+        <p className="text-primary">
+          <span>{`TokenId No.1 NFT URI is ${NftUri} `}</span>
+          <Emoji label="cat" symbol="😻" />
+        </p>
+      )}
+    </WalletLoader>
   )
 }
 
