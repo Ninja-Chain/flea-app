@@ -6,6 +6,7 @@ import {
 } from '../util/conversion'
 import { useAlert } from 'react-alert'
 import Emoji from '../components/Emoji'
+import Head from 'next/head'
 
 const PUBLIC_STAKING_DENOM = process.env.NEXT_PUBLIC_STAKING_DENOM || 'uconst'
 const PUBLIC_CW721_CONTRACT = process.env.NEXT_PUBLIC_CW721_CONTRACT || ''
@@ -46,21 +47,30 @@ const Home = (): ReactElement => {
   }, [signingClient, alert])
 
   return (
-    <WalletLoader loading={loading}>
-      {balance && (
-        <p className="text-primary">
-          <span>{`Your wallet has ${balance} `}</span>
-          <Emoji label="dog2" symbol="🐕" />
-        </p>
-      )}
+    <div>
+      <Head>
+        <title>Home</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-      {NftUri && (
-        <p className="text-primary">
-          <span>{`TokenId No.1 NFT URI is ${NftUri} `}</span>
-          <Emoji label="cat" symbol="😻" />
-        </p>
-      )}
-    </WalletLoader>
+      <main>
+        <WalletLoader loading={loading}>
+          {balance && (
+            <p className="text-primary">
+              <span>{`Your wallet has ${balance} `}</span>
+              <Emoji label="dog2" symbol="🐕" />
+            </p>
+          )}
+
+          {NftUri && (
+            <p className="text-primary">
+              <span>{`TokenId No.1 NFT URI is ${NftUri} `}</span>
+              <Emoji label="cat" symbol="😻" />
+            </p>
+          )}
+        </WalletLoader>
+      </main>
+    </div>
   )
 }
 
