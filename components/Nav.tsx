@@ -14,20 +14,8 @@ function Nav() {
   }
 
   return (
-    <div className="border-b w-screen px-2 md:px-16">
-      <nav className="flex flex-wrap text-center md:text-left md:flex flex-row w-full justify-between items-center py-4 ">
-        <div className="flex items-center">
-          <Link href="/">
-            <a className="text-2xl">
-              <Emoji label="poodle" symbol="🐩" />
-            </a>
-          </Link>
-          <Link href="/">
-            <a className="ml-1 md:ml-2 link link-hover font-semibold text-xl md:text-2xl align-top">
-              {process.env.NEXT_PUBLIC_SITE_TITLE}
-            </a>
-          </Link>
-        </div>
+    <div className="border-b w-screen px-2 md:px-16 bg-yellow-400">
+      <nav className="flex flex-wrap text-center md:text-right md:flex flex-row w-full justify-between items-center py-4 ">
         <div className="flex flex-grow lg:flex-grow-0 max-w-full">
           <button
             className="block btn btn-outline btn-primary w-full max-w-full truncate"

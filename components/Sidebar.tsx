@@ -5,12 +5,12 @@ import Link from 'next/link';
 const Sidebar = (): ReactElement => {
   return (
     <aside
-      className="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-white"
+      className="sidebar w-64 md:shadow -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-50"
     >
       <div className="sidebar-header flex items-center justify-center py-5">
         <div className="inline-flex">
           <a href="#" className="inline-flex flex-row items-center">
-            <span className="leading-10 text-yellow-600 text-2xl font-bold ml-1">Fea Market</span>
+            <span className="leading-10 text-yellow-600 text-2xl font-bold ml-1">Flea</span>
           </a>
         </div>
       </div>
