@@ -18,7 +18,7 @@ const Sidebar = (): ReactElement => {
         <ul className="flex flex-col w-full">
           <li className="my-5">
             <a
-              href="#"
+              href="/explore"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
@@ -41,7 +41,7 @@ const Sidebar = (): ReactElement => {
           </li>
           <li className="my-5">
             <a
-              href="#"
+              href="/mypage"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
@@ -62,7 +62,7 @@ const Sidebar = (): ReactElement => {
           </li>
           <li className="my-5">
             <a
-              href="#"
+              href="/create"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
@@ -85,7 +85,7 @@ const Sidebar = (): ReactElement => {
           </li>
           <li className="my-5">
             <a
-              href="#"
+              href="/wrapped"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
@@ -104,7 +104,7 @@ const Sidebar = (): ReactElement => {
                   <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </span>
-              <span className="ml-3">CONFIG</span>
+              <span className="ml-3">wCONST</span>
             </a>
           </li>
         </ul>
