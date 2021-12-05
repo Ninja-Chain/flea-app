@@ -90,45 +90,42 @@ const WrappedToken = (): ReactElement => {
   return (
     <div>
       <Head>
-        <title>Wrapped CONST</title>
+        <title>wCONST</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <WalletLoader loading={loading}>
-          {nativeBalance && (
-            <p className="text-primary">
-              <span>{`Your wallet has ${nativeBalance} `}</span>
-              <Emoji label="dog2" symbol="🐕" />
-            </p>
-          )}
-          {wrappedBalance && (
-            <p className="text-primary">
-              <span>{`Your wallet has ${wrappedBalance} wCONST `}</span>
-              <Emoji label="dog2" symbol="🐕" />
-            </p>
-          )}
-          {/* <div className="form-control">
-            <div className="relative">
-              <input
-                type="number"
-                id="purchase-amount"
-                placeholder="Amount"
-                step="0.1"
-                className="w-full input input-lg input-primary input-bordered font-mono"
-                onChange={handleChange}
-                value={purchaseAmount}
-                style={{ paddingRight: '10rem' }}
-              />
-              <button
-                className="absolute top-0 right-0 rounded-l-none btn btn-lg btn-primary"
-                onClick={handlePurchase}
-              >
-                purchase
-              </button>
+        <div className="inline-block align-middle pt-20">
+          <h1>
+            wCONST
+          </h1>
+          {/* <WalletLoader loading={loading}> */}
+            <div className="py-4">
+              <p className="text-primary">
+                <span>{`Your wallet has ${nativeBalance} CONST `}</span>
+                <Emoji label="cat2" symbol="🐈" />
+              </p>
+              <p className="text-primary">
+                <span>{`Your wallet has ${wrappedBalance} wCONST `}</span>
+                <Emoji label="cat2" symbol="🐈" />
+              </p>
             </div>
-          </div> */}
-        </WalletLoader>
+            <h2>CONST to wCONST</h2>
+            <div className="form-control">
+              <div className="relative">
+              <input type="number" placeholder="number...." className="border border-gray-300 p-2 m-2 rounded-md focus:outline-none focus:ring-2 ring-blue-200" />
+              <button className="p-2 my-2 bg-yellow-600 text-white rounded-md focus:outline-none focus:ring-2 ring-yellow-300 ring-offset-2">Convert</button>
+              </div>
+            </div>
+            <h2> wCONST to CONST</h2>
+            <div className="form-control">
+              <div className="relative">
+              <input type="number" placeholder="number...." className="border border-gray-300 p-2 m-2 rounded-md focus:outline-none focus:ring-2 ring-blue-200" />
+              <button className="p-2 my-2 bg-yellow-600 text-white rounded-md focus:outline-none focus:ring-2 ring-yellow-300 ring-offset-2">Convert</button>
+              </div>
+            </div>
+          {/* </WalletLoader> */}
+        </div>
       </main>
     </div>
   )

@@ -85,7 +85,7 @@ const Sidebar = (): ReactElement => {
           </li>
           <li className="my-5">
             <a
-              href="/wrapped"
+              href="/wrappedtoken"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
