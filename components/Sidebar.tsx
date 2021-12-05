@@ -5,12 +5,12 @@ import Link from 'next/link';
 const Sidebar = (): ReactElement => {
   return (
     <aside
-      className="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-white"
+      className="sidebar w-full md:shadow -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-50"
     >
       <div className="sidebar-header flex items-center justify-center py-5">
         <div className="inline-flex">
           <a href="#" className="inline-flex flex-row items-center">
-            <span className="leading-10 text-yellow-600 text-2xl font-bold ml-1">Fea Market</span>
+            <span className="leading-10 text-yellow-600 text-2xl font-bold ml-1">Flea</span>
           </a>
         </div>
       </div>
@@ -18,7 +18,7 @@ const Sidebar = (): ReactElement => {
         <ul className="flex flex-col w-full">
           <li className="my-5">
             <a
-              href=""
+              href="/explore"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
@@ -85,7 +85,7 @@ const Sidebar = (): ReactElement => {
           </li>
           <li className="my-5">
             <a
-              href="/wrappedtoken"
+              href="/wrapped"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="flex items-center justify-center text-lg text-gray-400">
@@ -104,7 +104,7 @@ const Sidebar = (): ReactElement => {
                   <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </span>
-              <span className="ml-3">Wrapped CONST</span>
+              <span className="ml-3">wCONST</span>
             </a>
           </li>
         </ul>
