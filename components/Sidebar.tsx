@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Sidebar = (): ReactElement => {
   return (
     <aside
-      className="sidebar w-64 md:shadow -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-50"
+      className="sidebar w-full md:shadow -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-50"
     >
       <div className="sidebar-header flex items-center justify-center py-5">
         <div className="inline-flex">
