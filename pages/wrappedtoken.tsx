@@ -88,7 +88,7 @@ const WrappedToken = (): ReactElement => {
   // }
 
   return (
-    <div>
+    <div className="w-1/3">
       <Head>
         <title>wCONST</title>
         <link rel="icon" href="/favicon.ico" />
