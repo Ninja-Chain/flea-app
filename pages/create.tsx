@@ -1,11 +1,12 @@
-import { ReactElement, useState, ChangeEvent } from 'react';
+import { ReactElement, useState, useEffect, ChangeEvent } from 'react';
 import { Buffer } from 'buffer'
 import Head from 'next/head'
-// import WalletLoader from '../components/WalletLoader'
+import WalletLoader from '../components/WalletLoader'
 import { useSigningClient } from '../contexts/cosmwasm'
 import { useAlert } from 'react-alert'
+import { calculateFee, GasPrice } from "@cosmjs/stargate";
 
-const PUBLIC_CW721_CONTRACT = process.env.NEXT_NEXT_PUBLIC_CW721_CONTRACT || ''
+const PUBLIC_CW721_CONTRACT = process.env.NEXT_PUBLIC_CW721_CONTRACT || ''
 
 const Create = (): ReactElement => {
   const { walletAddress, signingClient, connectWallet } = useSigningClient()
@@ -17,17 +18,8 @@ const Create = (): ReactElement => {
   const [nftTokenId, setNftTokenId] = useState(0)
   const alert = useAlert()
 
-  const handleMint = async (): Promise<void> => {
-    const metadata = `{"name": ${nftName}, "description": "${nftDescription}", "image": "${nftImageUrl}"}`
-    const encodedMetadata = Buffer.from(metadata).toString('base64')
-    console.log(`{"name": ${nftName}, "description": "${nftDescription}", "image": "${nftImageUrl}"}`)
-    console.log(`data:application/json;base64, ${encodedMetadata}`)
-    // TODO うまく表示できないのが、ノード側の問題なのか、Dapp側の問題なのか調査する
-    console.log(walletAddress)
-
+  useEffect(() => {
     if (!signingClient) return
-
-    console.log("ここまできていない")
 
     // Gets minted NFT amount
     signingClient.queryContractSmart(PUBLIC_CW721_CONTRACT, {"num_tokens":{}}).then((response) => {
@@ -36,17 +28,24 @@ const Create = (): ReactElement => {
       alert.error(`Error! ${error.message}`)
       console.log('Error signingClient.queryContractSmart() num_tokens: ', error)
     })
+  }, [signingClient, alert])
+
+  const handleMint = async (): Promise<void> => {
+    const metadata = `{"name": ${nftName}, "description": "${nftDescription}", "image": "${nftImageUrl}"}`
+    const encodedMetadata = Buffer.from(metadata).toString('base64')
+    console.log(`{"name": ${nftName}, "description": "${nftDescription}", "image": "${nftImageUrl}"}`)
+    console.log(`data:application/json;base64, ${encodedMetadata}`)
+
+    if (!signingClient) return
 
     signingClient?.execute(
       walletAddress, // sender address
       PUBLIC_CW721_CONTRACT, // cw721-base contract
-      { mint: [{ token_id: nftTokenId, owner: walletAddress, token_uri: `data:application/json;base64, ${encodedMetadata}`}] }, // msg
-      undefined
+      {mint:{token_id:nftTokenId.toString(), owner:`${walletAddress}`,token_uri:`data:application/json;base64, ${encodedMetadata}`}}, // msg
+      calculateFee(300_000, "20uconst")
     ).then((response) => {
       console.log(response)
-      setNftName('')
-      setNftImageUrl('')
-      setNftDescription('')
+      setNftTokenId(nftTokenId+1);
       setLoading(false)
       alert.success('Successfully minted!')
     }).catch((error) => {
@@ -76,8 +75,7 @@ const Create = (): ReactElement => {
         <title>Create</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* TODO ノードとの接続ができないと見えない部分なので、WalletLoaderは一旦コメントアウト */}
-      {/* <WalletLoader loading={false}> */}
+      <WalletLoader loading={false}>
         <main>
           <div className="inline-block align-middle pt-20 w-full">
             <h1>
@@ -87,13 +85,13 @@ const Create = (): ReactElement => {
               <div className="py-4">
                 <p>Name</p>
                 <div className="flex items-center border-b border-teal-500 py-2">
-                  <input value={nftName} onChange={handleNameChange} className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Favorite Name" aria-label="Full name" />
+                  <input onChange={handleNameChange} className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Favorite Name" aria-label="Full name" />
                 </div>
               </div>
               <div className="py-4">
                 <p>Image URL</p>
                 <div className="flex items-center border-b border-teal-500 py-2">
-                  <input value={nftImageUrl} onChange={handleImageUrlChange} className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="http://www.example.image.com" aria-label="Full name" />
+                  <input onChange={handleImageUrlChange} className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="http://www.example.image.com" aria-label="Full name" />
                 </div>
               </div>
               <div className="py-4">
@@ -108,7 +106,7 @@ const Create = (): ReactElement => {
             </form>
           </div>
         </main>
-      {/* </WalletLoader> */}
+      </WalletLoader>
     </div>
   )
 }
