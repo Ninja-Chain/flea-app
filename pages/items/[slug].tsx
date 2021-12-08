@@ -93,7 +93,6 @@ const Item = (
         if (res.owner === walletAddress) {
           // My NFT
           setCanSell(true)
-          setCanCansel(true)
         }
       })
       .catch((error) => {
