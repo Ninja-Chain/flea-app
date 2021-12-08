@@ -53,23 +53,19 @@ const Home = (): ReactElement => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <WalletLoader loading={loading}>
-          {balance && (
-            <p className="text-primary">
-              <span>{`Your wallet has ${balance} `}</span>
-              <Emoji label="dog2" symbol="🐕" />
-            </p>
-          )}
-
-          {NftUri && (
-            <p className="text-primary">
-              <span>{`TokenId No.1 NFT URI is ${NftUri} `}</span>
-              <Emoji label="cat" symbol="😻" />
-            </p>
-          )}
-        </WalletLoader>
-      </main>
+      <div className="inline-block align-middle pt-20">
+          <WalletLoader loading={loading}>
+            <h1>
+              You can mint your NFT on Archway⛩
+            </h1>
+            <h1>
+              You can sell and buy Cosmos NFTs without market fee😍
+            </h1>
+            <h1>
+              You can mint and burn wrapped CONST token easily👍
+            </h1>
+          </WalletLoader>
+        </div>
     </div>
   )
 }
