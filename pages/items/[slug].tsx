@@ -68,8 +68,8 @@ const Item = (
       .then((res) => {
         res.offerings.map((offer) => {
           if (offer.token_id === nftTokenId) {
-            setOfferingId(offer.offering_id)
-            setNftPrice(`${offer.list_price.amount} ${PUBLIC_STAKING_DENOM}`)
+            setOfferingId(offer.id)
+            setNftPrice(`${offer.list_price.amount}`)
           }
         })
       })
@@ -147,7 +147,7 @@ const Item = (
             msg: encodedMsg,
           },
         }, // msg
-        calculateFee(300_000, "20uconst")
+        calculateFee(600_000, "20uconst")
       )
       .then((res) => {
         console.log(res)
@@ -192,7 +192,7 @@ const Item = (
             {canBuy ? (
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  {nftPrice}
+                  {nftPrice} {PUBLIC_STAKING_DENOM}
                 </span>
                 <button
                   onClick={handleBuy}
