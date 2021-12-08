@@ -112,10 +112,10 @@ const WrappedToken = (): ReactElement => {
 
       <main>
         <div className="inline-block align-middle pt-20">
-          <h1>
-            wCONST
-          </h1>
           <WalletLoader loading={loading}>
+            <h1>
+              wCONST
+            </h1>
             <div className="py-4">
               <p className="text-primary">
                 <span>{`Your wallet has ${nativeBalance || "0 CONST"} `}</span>
