@@ -11,6 +11,7 @@ const PUBLIC_CW721_CONTRACT = process.env.NEXT_PUBLIC_CW721_CONTRACT || ''
 const MyPage = (): ReactElement => {
   const { walletAddress, signingClient, connectWallet } = useSigningClient()
   const [Nft, setNft] = useState([])
+  const [loading, setLoading] = useState(false)
   const alert = useAlert()
 
   useEffect(() => {
@@ -70,8 +71,8 @@ const MyPage = (): ReactElement => {
   }, [signingClient, alert])
 
   return (
-    <div className="w-full">
-      <WalletLoader loading={false}>
+    <div className="inline-block align-middle pt-20">
+      <WalletLoader loading={loading}>
         <main className="bg-white">
           <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h1>My Page: My NFT</h1>

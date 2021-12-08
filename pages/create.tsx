@@ -70,14 +70,15 @@ const Create = (): ReactElement => {
   }
 
   return (
-    <div className="w-1/3">
+    <div className="w-5/4 content-center">
       <Head>
         <title>Create</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <WalletLoader loading={false}>
-        <main>
-          <div className="inline-block align-middle pt-20 w-full">
+
+      <div className="inline-block align-middle pt-20">
+        <WalletLoader loading={loading}>
+          <main>
             <h1>
               Create Your NFT
             </h1>
@@ -104,9 +105,9 @@ const Create = (): ReactElement => {
                 <button onClick={handleMint} className="p-2 my-2 bg-yellow-600 text-white rounded-md focus:outline-none focus:ring-2 ring-yellow-300 ring-offset-2" type="button">Mint</button>
               </div>
             </form>
-          </div>
-        </main>
-      </WalletLoader>
+          </main>
+        </WalletLoader>
+      </div>
     </div>
   )
 }
