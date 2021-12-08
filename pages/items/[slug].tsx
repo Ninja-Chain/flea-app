@@ -69,7 +69,7 @@ const Item = (
         res.offerings.map((offer) => {
           if (offer.token_id === nftTokenId) {
             setOfferingId(offer.offering_id)
-            setNftPrice(`${offer.list_price} ${PUBLIC_STAKING_DENOM}`)
+            setNftPrice(`${offer.list_price.amount} ${PUBLIC_STAKING_DENOM}`)
           }
         })
       })
