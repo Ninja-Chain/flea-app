@@ -31,7 +31,7 @@ const Create = (): ReactElement => {
   }, [signingClient, alert])
 
   const handleMint = async (): Promise<void> => {
-    const metadata = `{"name": ${nftName}, "description": "${nftDescription}", "image": "${nftImageUrl}"}`
+    const metadata = `{"name": "${nftName}", "description": "${nftDescription}", "image": "${nftImageUrl}"}`
     const encodedMetadata = Buffer.from(metadata).toString('base64')
     console.log(`{"name": ${nftName}, "description": "${nftDescription}", "image": "${nftImageUrl}"}`)
     console.log(`data:application/json;base64, ${encodedMetadata}`)
