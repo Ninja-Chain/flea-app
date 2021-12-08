@@ -2,11 +2,9 @@ import { ReactElement, useState, useEffect, ChangeEvent } from 'react';
 import Image from 'next/image'
 import Link from 'next/link';
 import { Buffer } from 'buffer'
-import Head from 'next/head'
 import WalletLoader from '../components/WalletLoader'
 import { useSigningClient } from '../contexts/cosmwasm'
 import { useAlert } from 'react-alert'
-import { calculateFee, GasPrice } from "@cosmjs/stargate";
 
 const PUBLIC_CW721_CONTRACT = process.env.NEXT_PUBLIC_CW721_CONTRACT || ''
 
@@ -73,27 +71,29 @@ const MyPage = (): ReactElement => {
 
   return (
     <div className="w-full">
-      <main className="bg-white">
-        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <h1>My Page: My NFT</h1>
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 py-4">
-            {Nft.map((item) => (
-              <Link key={item.id} href={item.href} >
-                <a className="group">
-                  <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                    <Image
-                      src={item.imageSrc}
-                      className="w-full h-full object-center object-cover group-hover:opacity-75"
-                      layout="fill"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
-                </a>
-              </Link>
-            ))}
+      <WalletLoader loading={false}>
+        <main className="bg-white">
+          <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <h1>My Page: My NFT</h1>
+            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 py-4">
+              {Nft.map((item) => (
+                <Link key={item.id} href={item.href} >
+                  <a className="group">
+                    <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                      <Image
+                        src={item.imageSrc}
+                        className="w-full h-full object-center object-cover group-hover:opacity-75"
+                        layout="fill"
+                      />
+                    </div>
+                    <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
+                  </a>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </WalletLoader>
     </div>
   )
 }
