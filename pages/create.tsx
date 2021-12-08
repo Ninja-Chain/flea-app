@@ -4,7 +4,7 @@ import Head from 'next/head'
 import WalletLoader from '../components/WalletLoader'
 import { useSigningClient } from '../contexts/cosmwasm'
 import { useAlert } from 'react-alert'
-import { calculateFee, GasPrice } from "@cosmjs/stargate";
+import { calculateFee } from "@cosmjs/stargate";
 
 const PUBLIC_CW721_CONTRACT = process.env.NEXT_PUBLIC_CW721_CONTRACT || ''
 
