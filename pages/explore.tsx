@@ -36,27 +36,41 @@ const Explore = (): ReactElement => {
             })
           )
         }
-        Promise.all(promises).then((res) => {
-          const items = res.map((token, i) => {
-            console.log(Buffer.from(token.token_uri.slice(30), "base64").toString())
-            const decodedMetadata = JSON.parse(
-              Buffer.from(token.token_uri.slice(30), "base64").toString()
-            )
-            console.log(decodedMetadata)
+        Promise.all(promises)
+          .then((res) => {
+            const items = res.map(async (token, i) => {
+              const decodedMetadata = JSON.parse(
+                Buffer.from(token.token_uri.slice(30), "base64").toString()
+              )
 
-            return {
-              id: i + 1,
-              name: decodedMetadata.name,
-              href: `/items/${i + 1}`,
-              // 価格を反映する
-              price: `${0} ${PUBLIC_STAKING_DENOM}`,
-              imageSrc:
-                decodedMetadata.image || "https://dummyimage.com/400x400",
-            }
+              let price = 0
+              const query = await signingClient.queryContractSmart(
+                PUBLIC_MARKETPLACE,
+                { get_offerings: {} }
+              )
+              const b = query.offerings.forEach((offer) => {
+                if (offer.token_id === `${i + 1}`) {
+                  price += Number(offer.list_price.amount)
+                }
+              })
+
+              return {
+                id: i + 1,
+                name: decodedMetadata.name,
+                href: `/items/${i + 1}`,
+                price: `${price} ${PUBLIC_STAKING_DENOM}`,
+                imageSrc:
+                  decodedMetadata.image || "https://dummyimage.com/400x400",
+              }
+            })
+
+            return items
           })
-
-          setNft(items)
-        })
+          .then(async (res) => {
+            Promise.all(res).then((items) => {
+              setNft(items)
+            })
+          })
       })
       .catch((error) => {
         alert.error(`Error! ${error.message}`)
