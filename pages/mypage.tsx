@@ -32,8 +32,10 @@ const MyPage = (): ReactElement => {
           )
         }
         Promise.all(owned).then((res) => {
+          const tokenIds=[]
           for (let i = 0; i < res.length; i++) {
             if(res[i].owner == walletAddress) {
+              tokenIds.push(i+1)
               promises.push(
                 signingClient.queryContractSmart(PUBLIC_CW721_CONTRACT, {
                   nft_info: { token_id: (i + 1).toString() },
@@ -50,9 +52,9 @@ const MyPage = (): ReactElement => {
               console.log(decodedMetadata)
 
               return {
-                id: i + 1,
+                id: tokenIds[i],
                 name: decodedMetadata.name,
-                href: `/items/${i + 1}`,
+                href: `/items/${tokenIds[i]}`,
                 imageSrc:
                   decodedMetadata.image || "https://dummyimage.com/400x400",
               }
