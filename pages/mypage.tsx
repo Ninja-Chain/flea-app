@@ -73,7 +73,7 @@ const MyPage = (): ReactElement => {
   }, [signingClient, alert])
 
   return (
-    <div className="inline-block align-middle pt-20">
+    <div className="w-full pt-20">
       <WalletLoader loading={loading}>
         <main className="bg-white">
           <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
