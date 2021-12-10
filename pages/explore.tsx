@@ -50,7 +50,7 @@ const Explore = (): ReactElement => {
               )
               const b = query.offerings.forEach((offer) => {
                 if (offer.token_id === `${i + 1}`) {
-                  price += Number(offer.list_price.amount)
+                  price += Number(offer.list_price.amount) /1000000
                 }
               })
 
@@ -58,7 +58,7 @@ const Explore = (): ReactElement => {
                 id: i + 1,
                 name: decodedMetadata.name,
                 href: `/items/${i + 1}`,
-                price: `${price} ${PUBLIC_STAKING_DENOM}`,
+                price: `${price} CONST`,
                 imageSrc:
                   decodedMetadata.image || "https://dummyimage.com/400x400",
               }
@@ -98,7 +98,7 @@ const Explore = (): ReactElement => {
                   </div>
                   <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
                   <p className="mt-1 text-lg font-medium text-gray-900">
-                    {item.price}
+                    {(item.price != "0 CONST") && item.price}
                   </p>
                 </a>
               </Link>
