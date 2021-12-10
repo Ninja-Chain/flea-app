@@ -44,7 +44,7 @@ const WrappedToken = (): ReactElement => {
 
     // Gets token balance
     signingClient.queryContractSmart(PUBLIC_WRAPPED_TOKEN_CONTRACT, {"balance":{"address": walletAddress}}).then((response) => {
-      setWrappedBalance(response.balance);
+      setWrappedBalance((Number(response.balance) / 1000000).toString());
     }).catch((error) => {
       alert.error(`Error! ${error.message}`)
       console.log('Error signingClient.queryContractSmart() balance: ', error)
@@ -68,9 +68,9 @@ const WrappedToken = (): ReactElement => {
       walletAddress, // sender address
       PUBLIC_WRAPPED_TOKEN_CONTRACT, // wrapped token contract
       {deposit:{}}, // msg
-      calculateFee(300_000, "20uconst"), //fee
+      calculateFee(300_000, "0uconst"), //fee
       undefined, //memo
-      [{amount: purchaseWrappedAmount, denom: "uconst"}] //funds
+      [{amount: (purchaseWrappedAmount*1000000).toString(), denom: "uconst"}] //funds
     ).then((response) => {
       console.log(response)
       setPurchaseWrappedAmount("")
@@ -89,8 +89,8 @@ const WrappedToken = (): ReactElement => {
     signingClient?.execute(
       walletAddress, // sender address
       PUBLIC_WRAPPED_TOKEN_CONTRACT, // wrapped token contract
-      {withdraw:{ amount: purchaseUnwrappedAmount}}, // msg
-      calculateFee(300_000, "20uconst") //fee
+      {withdraw:{ amount: (purchaseUnwrappedAmount*1000000).toString()}}, // msg
+      calculateFee(300_000, "0uconst") //fee
     ).then((response) => {
       console.log(response)
       setPurchaseUnwrappedAmount("")

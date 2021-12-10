@@ -163,7 +163,7 @@ const Item = (
     const {
       target: { value },
     } = event
-    setNftSellPrice(value)
+    setNftSellPrice((Number(value)*1000000).toString())
   }
 
   return (
@@ -192,7 +192,7 @@ const Item = (
             {canBuy ? (
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  {nftPrice} {PUBLIC_STAKING_DENOM}
+                  {(Number(nftPrice)/1000000).toString()} CONST
                 </span>
                 <button
                   onClick={handleBuy}
